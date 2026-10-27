@@ -1,0 +1,765 @@
+{
+  "schemaVersion": 1,
+  "tileSize": 16,
+  "conventions": {
+    "coordinates": "zero-based column,row",
+    "localId": "row * columns + column",
+    "globalId": "world tileset firstgid + localId; 0 means empty",
+    "visualReview": "Originals, contact sheet and numbered previews inspected; only selected IDs used.",
+    "gameplay": "Actions, hitboxes and NPC roles are authored map design, not inferred asset behavior."
+  },
+  "layers": {
+    "tile": [
+      "Ground",
+      "GroundDetails",
+      "Roads",
+      "Decorations",
+      "Buildings",
+      "Foreground"
+    ],
+    "object": [
+      "CollisionObjects",
+      "NPCs",
+      "Interactables",
+      "Triggers",
+      "PlayerSpawns"
+    ]
+  },
+  "tilesets": [
+    {
+      "key": "grass",
+      "image": "Tiles/GrassMiddle.png",
+      "name": "grass",
+      "category": "ground-landscape",
+      "roles": { "0": "grass-fill" },
+      "notes": "",
+      "tileWidth": 16,
+      "tileHeight": 16,
+      "columns": 1,
+      "rows": 1,
+      "firstgidInWorld": 1,
+      "preview": "previews/tilesets/GrassMiddle.png",
+      "classification": "visually-reviewed-selection",
+      "tiles": [
+        { "localId": 0, "column": 0, "row": 0, "meaning": "grass-fill" }
+      ]
+    },
+    {
+      "key": "path",
+      "image": "Tiles/PathTile.png",
+      "name": "path",
+      "category": "roads-paths",
+      "roles": {
+        "0": "outer-northwest",
+        "1": "north-edge",
+        "2": "outer-northeast",
+        "3": "west-edge",
+        "4": "center",
+        "5": "east-edge",
+        "6": "outer-southwest",
+        "7": "south-edge",
+        "8": "outer-southeast",
+        "9": "concave-missing-southeast",
+        "10": "concave-missing-southwest",
+        "12": "concave-missing-northeast",
+        "13": "concave-missing-northwest",
+        "15": "surface-detail-a",
+        "16": "surface-detail-b",
+        "17": "surface-detail-c"
+      },
+      "notes": "IDs 11 and 14 are transparent. Concave IDs encode a missing diagonal neighbor.",
+      "tileWidth": 16,
+      "tileHeight": 16,
+      "columns": 3,
+      "rows": 6,
+      "firstgidInWorld": 2,
+      "preview": "previews/tilesets/PathTile.png",
+      "classification": "visually-reviewed-selection",
+      "tiles": [
+        { "localId": 0, "column": 0, "row": 0, "meaning": "outer-northwest" },
+        { "localId": 1, "column": 1, "row": 0, "meaning": "north-edge" },
+        { "localId": 2, "column": 2, "row": 0, "meaning": "outer-northeast" },
+        { "localId": 3, "column": 0, "row": 1, "meaning": "west-edge" },
+        { "localId": 4, "column": 1, "row": 1, "meaning": "center" },
+        { "localId": 5, "column": 2, "row": 1, "meaning": "east-edge" },
+        { "localId": 6, "column": 0, "row": 2, "meaning": "outer-southwest" },
+        { "localId": 7, "column": 1, "row": 2, "meaning": "south-edge" },
+        { "localId": 8, "column": 2, "row": 2, "meaning": "outer-southeast" },
+        {
+          "localId": 9,
+          "column": 0,
+          "row": 3,
+          "meaning": "concave-missing-southeast"
+        },
+        {
+          "localId": 10,
+          "column": 1,
+          "row": 3,
+          "meaning": "concave-missing-southwest"
+        },
+        {
+          "localId": 12,
+          "column": 0,
+          "row": 4,
+          "meaning": "concave-missing-northeast"
+        },
+        {
+          "localId": 13,
+          "column": 1,
+          "row": 4,
+          "meaning": "concave-missing-northwest"
+        },
+        { "localId": 15, "column": 0, "row": 5, "meaning": "surface-detail-a" },
+        { "localId": 16, "column": 1, "row": 5, "meaning": "surface-detail-b" },
+        { "localId": 17, "column": 2, "row": 5, "meaning": "surface-detail-c" }
+      ]
+    },
+    {
+      "key": "water",
+      "image": "Tiles/WaterTile.png",
+      "name": "water",
+      "category": "water",
+      "roles": {
+        "0": "outer-northwest",
+        "1": "north-edge",
+        "2": "outer-northeast",
+        "3": "west-edge",
+        "4": "center",
+        "5": "east-edge",
+        "6": "outer-southwest",
+        "7": "south-edge",
+        "8": "outer-southeast",
+        "9": "concave-missing-southeast",
+        "10": "concave-missing-southwest",
+        "12": "concave-missing-northeast",
+        "13": "concave-missing-northwest",
+        "15": "surface-detail-a",
+        "16": "surface-detail-b",
+        "17": "surface-detail-c"
+      },
+      "notes": "Same edge arrangement as Path_Tile; water blocks walking through an explicit rectangle.",
+      "tileWidth": 16,
+      "tileHeight": 16,
+      "columns": 3,
+      "rows": 6,
+      "firstgidInWorld": 20,
+      "preview": "previews/tilesets/WaterTile.png",
+      "classification": "visually-reviewed-selection",
+      "tiles": [
+        { "localId": 0, "column": 0, "row": 0, "meaning": "outer-northwest" },
+        { "localId": 1, "column": 1, "row": 0, "meaning": "north-edge" },
+        { "localId": 2, "column": 2, "row": 0, "meaning": "outer-northeast" },
+        { "localId": 3, "column": 0, "row": 1, "meaning": "west-edge" },
+        { "localId": 4, "column": 1, "row": 1, "meaning": "center" },
+        { "localId": 5, "column": 2, "row": 1, "meaning": "east-edge" },
+        { "localId": 6, "column": 0, "row": 2, "meaning": "outer-southwest" },
+        { "localId": 7, "column": 1, "row": 2, "meaning": "south-edge" },
+        { "localId": 8, "column": 2, "row": 2, "meaning": "outer-southeast" },
+        {
+          "localId": 9,
+          "column": 0,
+          "row": 3,
+          "meaning": "concave-missing-southeast"
+        },
+        {
+          "localId": 10,
+          "column": 1,
+          "row": 3,
+          "meaning": "concave-missing-southwest"
+        },
+        {
+          "localId": 12,
+          "column": 0,
+          "row": 4,
+          "meaning": "concave-missing-northeast"
+        },
+        {
+          "localId": 13,
+          "column": 1,
+          "row": 4,
+          "meaning": "concave-missing-northwest"
+        },
+        { "localId": 15, "column": 0, "row": 5, "meaning": "surface-detail-a" },
+        { "localId": 16, "column": 1, "row": 5, "meaning": "surface-detail-b" },
+        { "localId": 17, "column": 2, "row": 5, "meaning": "surface-detail-c" }
+      ]
+    },
+    {
+      "key": "farm",
+      "image": "Tiles/FarmLandTile.png",
+      "name": "farm",
+      "category": "ground-landscape",
+      "roles": {
+        "0": "outer-northwest",
+        "1": "north-edge",
+        "2": "outer-northeast",
+        "3": "west-edge",
+        "4": "center",
+        "5": "east-edge",
+        "6": "outer-southwest",
+        "7": "south-edge",
+        "8": "outer-southeast"
+      },
+      "notes": "",
+      "tileWidth": 16,
+      "tileHeight": 16,
+      "columns": 3,
+      "rows": 3,
+      "firstgidInWorld": 38,
+      "preview": "previews/tilesets/FarmLandTile.png",
+      "classification": "visually-reviewed-selection",
+      "tiles": [
+        { "localId": 0, "column": 0, "row": 0, "meaning": "outer-northwest" },
+        { "localId": 1, "column": 1, "row": 0, "meaning": "north-edge" },
+        { "localId": 2, "column": 2, "row": 0, "meaning": "outer-northeast" },
+        { "localId": 3, "column": 0, "row": 1, "meaning": "west-edge" },
+        { "localId": 4, "column": 1, "row": 1, "meaning": "center" },
+        { "localId": 5, "column": 2, "row": 1, "meaning": "east-edge" },
+        { "localId": 6, "column": 0, "row": 2, "meaning": "outer-southwest" },
+        { "localId": 7, "column": 1, "row": 2, "meaning": "south-edge" },
+        { "localId": 8, "column": 2, "row": 2, "meaning": "outer-southeast" }
+      ]
+    },
+    {
+      "key": "house",
+      "image": "Outdoor decoration/HouseWoodBaseBlue.png",
+      "name": "house",
+      "category": "buildings",
+      "roles": {},
+      "notes": "One complete 6x8-tile sprite; place as a whole. Upper five rows are Foreground, lower three Buildings; transparent cells omitted.",
+      "tileWidth": 16,
+      "tileHeight": 16,
+      "columns": 6,
+      "rows": 8,
+      "firstgidInWorld": 47,
+      "preview": "previews/tilesets/HouseWoodBaseBlue.png",
+      "classification": "visually-reviewed-selection",
+      "tiles": []
+    },
+    {
+      "key": "oak",
+      "image": "Outdoor decoration/OakTree.png",
+      "name": "oak",
+      "category": "trees-vegetation",
+      "roles": {},
+      "notes": "One complete 4x5-tile tree. First three rows are canopy/Foreground, lower rows Decorations. Collision covers trunk only.",
+      "tileWidth": 16,
+      "tileHeight": 16,
+      "columns": 4,
+      "rows": 5,
+      "firstgidInWorld": 95,
+      "preview": "previews/tilesets/OakTree.png",
+      "classification": "visually-reviewed-selection",
+      "tiles": []
+    },
+    {
+      "key": "fence",
+      "image": "Outdoor decoration/Fences.png",
+      "name": "fence",
+      "category": "walls-obstacles",
+      "roles": {
+        "0": "vertical-top",
+        "1": "horizontal-left",
+        "2": "horizontal-middle",
+        "3": "horizontal-right",
+        "4": "vertical-middle",
+        "8": "vertical-bottom",
+        "12": "single-post"
+      },
+      "notes": "Remaining junction variants need a dedicated assembly rule before use.",
+      "tileWidth": 16,
+      "tileHeight": 16,
+      "columns": 4,
+      "rows": 4,
+      "firstgidInWorld": 115,
+      "preview": "previews/tilesets/Fences.png",
+      "classification": "visually-reviewed-selection",
+      "tiles": [
+        { "localId": 0, "column": 0, "row": 0, "meaning": "vertical-top" },
+        { "localId": 1, "column": 1, "row": 0, "meaning": "horizontal-left" },
+        { "localId": 2, "column": 2, "row": 0, "meaning": "horizontal-middle" },
+        { "localId": 3, "column": 3, "row": 0, "meaning": "horizontal-right" },
+        { "localId": 4, "column": 0, "row": 1, "meaning": "vertical-middle" },
+        { "localId": 8, "column": 0, "row": 2, "meaning": "vertical-bottom" },
+        { "localId": 12, "column": 0, "row": 3, "meaning": "single-post" }
+      ]
+    },
+    {
+      "key": "chest",
+      "image": "Outdoor decoration/Chest.png",
+      "name": "chest",
+      "category": "interactive-objects",
+      "roles": { "0": "closed-chest" },
+      "notes": "Opening action is authored game metadata; there is no opening animation in this image.",
+      "tileWidth": 16,
+      "tileHeight": 16,
+      "columns": 1,
+      "rows": 1,
+      "firstgidInWorld": 131,
+      "preview": "previews/tilesets/Chest.png",
+      "classification": "visually-reviewed-selection",
+      "tiles": [
+        { "localId": 0, "column": 0, "row": 0, "meaning": "closed-chest" }
+      ]
+    },
+    {
+      "key": "decor",
+      "image": "Outdoor decoration/OutdoorDecor.png",
+      "name": "decor",
+      "category": "decorations",
+      "roles": {
+        "0": "sprout-a",
+        "1": "sprout-b",
+        "2": "sprout-c",
+        "3": "carrot-sign",
+        "4": "carrot-seed-bag",
+        "5": "grain-sign",
+        "6": "grain-seed-bag",
+        "7": "small-yellow-flowers-a",
+        "8": "small-yellow-flowers-b",
+        "9": "small-yellow-flowers-c",
+        "10": "crop-seedling",
+        "11": "crop-leaves",
+        "12": "crop-row-small",
+        "13": "crop-row-tall",
+        "14": "stump",
+        "15": "small-rock",
+        "16": "medium-rock",
+        "17": "carrot-small",
+        "18": "carrot-large",
+        "19": "grain-green",
+        "20": "grain-ripe",
+        "21": "rock-cluster-a",
+        "22": "rock-cluster-b",
+        "23": "rock-cluster-c",
+        "24": "rock-cluster-d",
+        "32": "lamp-top",
+        "39": "lamp-middle",
+        "46": "lamp-base",
+        "49": "log-left",
+        "50": "log-right",
+        "51": "red-mushroom",
+        "56": "red-flower-small",
+        "57": "yellow-flower-small",
+        "58": "red-potted-flower-small",
+        "59": "yellow-potted-flower-small",
+        "63": "red-flower-medium",
+        "64": "yellow-flower-medium",
+        "65": "red-potted-flower-medium",
+        "66": "yellow-potted-flower-medium",
+        "70": "red-flower-large",
+        "71": "yellow-flower-large",
+        "72": "red-potted-flower-large",
+        "73": "yellow-potted-flower-large",
+        "77": "red-flower-tall",
+        "78": "yellow-flower-tall",
+        "79": "red-potted-flower-tall",
+        "80": "yellow-potted-flower-tall"
+      },
+      "notes": "Outlined inventory-like images and blank cells are not used as world terrain. Lamp is the vertical assembly [32,39,46]; log is [49,50].",
+      "tileWidth": 16,
+      "tileHeight": 16,
+      "columns": 7,
+      "rows": 12,
+      "firstgidInWorld": 132,
+      "preview": "previews/tilesets/OutdoorDecor.png",
+      "classification": "visually-reviewed-selection",
+      "tiles": [
+        { "localId": 0, "column": 0, "row": 0, "meaning": "sprout-a" },
+        { "localId": 1, "column": 1, "row": 0, "meaning": "sprout-b" },
+        { "localId": 2, "column": 2, "row": 0, "meaning": "sprout-c" },
+        { "localId": 3, "column": 3, "row": 0, "meaning": "carrot-sign" },
+        { "localId": 4, "column": 4, "row": 0, "meaning": "carrot-seed-bag" },
+        { "localId": 5, "column": 5, "row": 0, "meaning": "grain-sign" },
+        { "localId": 6, "column": 6, "row": 0, "meaning": "grain-seed-bag" },
+        {
+          "localId": 7,
+          "column": 0,
+          "row": 1,
+          "meaning": "small-yellow-flowers-a"
+        },
+        {
+          "localId": 8,
+          "column": 1,
+          "row": 1,
+          "meaning": "small-yellow-flowers-b"
+        },
+        {
+          "localId": 9,
+          "column": 2,
+          "row": 1,
+          "meaning": "small-yellow-flowers-c"
+        },
+        { "localId": 10, "column": 3, "row": 1, "meaning": "crop-seedling" },
+        { "localId": 11, "column": 4, "row": 1, "meaning": "crop-leaves" },
+        { "localId": 12, "column": 5, "row": 1, "meaning": "crop-row-small" },
+        { "localId": 13, "column": 6, "row": 1, "meaning": "crop-row-tall" },
+        { "localId": 14, "column": 0, "row": 2, "meaning": "stump" },
+        { "localId": 15, "column": 1, "row": 2, "meaning": "small-rock" },
+        { "localId": 16, "column": 2, "row": 2, "meaning": "medium-rock" },
+        { "localId": 17, "column": 3, "row": 2, "meaning": "carrot-small" },
+        { "localId": 18, "column": 4, "row": 2, "meaning": "carrot-large" },
+        { "localId": 19, "column": 5, "row": 2, "meaning": "grain-green" },
+        { "localId": 20, "column": 6, "row": 2, "meaning": "grain-ripe" },
+        { "localId": 21, "column": 0, "row": 3, "meaning": "rock-cluster-a" },
+        { "localId": 22, "column": 1, "row": 3, "meaning": "rock-cluster-b" },
+        { "localId": 23, "column": 2, "row": 3, "meaning": "rock-cluster-c" },
+        { "localId": 24, "column": 3, "row": 3, "meaning": "rock-cluster-d" },
+        { "localId": 32, "column": 4, "row": 4, "meaning": "lamp-top" },
+        { "localId": 39, "column": 4, "row": 5, "meaning": "lamp-middle" },
+        { "localId": 46, "column": 4, "row": 6, "meaning": "lamp-base" },
+        { "localId": 49, "column": 0, "row": 7, "meaning": "log-left" },
+        { "localId": 50, "column": 1, "row": 7, "meaning": "log-right" },
+        { "localId": 51, "column": 2, "row": 7, "meaning": "red-mushroom" },
+        { "localId": 56, "column": 0, "row": 8, "meaning": "red-flower-small" },
+        {
+          "localId": 57,
+          "column": 1,
+          "row": 8,
+          "meaning": "yellow-flower-small"
+        },
+        {
+          "localId": 58,
+          "column": 2,
+          "row": 8,
+          "meaning": "red-potted-flower-small"
+        },
+        {
+          "localId": 59,
+          "column": 3,
+          "row": 8,
+          "meaning": "yellow-potted-flower-small"
+        },
+        {
+          "localId": 63,
+          "column": 0,
+          "row": 9,
+          "meaning": "red-flower-medium"
+        },
+        {
+          "localId": 64,
+          "column": 1,
+          "row": 9,
+          "meaning": "yellow-flower-medium"
+        },
+        {
+          "localId": 65,
+          "column": 2,
+          "row": 9,
+          "meaning": "red-potted-flower-medium"
+        },
+        {
+          "localId": 66,
+          "column": 3,
+          "row": 9,
+          "meaning": "yellow-potted-flower-medium"
+        },
+        {
+          "localId": 70,
+          "column": 0,
+          "row": 10,
+          "meaning": "red-flower-large"
+        },
+        {
+          "localId": 71,
+          "column": 1,
+          "row": 10,
+          "meaning": "yellow-flower-large"
+        },
+        {
+          "localId": 72,
+          "column": 2,
+          "row": 10,
+          "meaning": "red-potted-flower-large"
+        },
+        {
+          "localId": 73,
+          "column": 3,
+          "row": 10,
+          "meaning": "yellow-potted-flower-large"
+        },
+        { "localId": 77, "column": 0, "row": 11, "meaning": "red-flower-tall" },
+        {
+          "localId": 78,
+          "column": 1,
+          "row": 11,
+          "meaning": "yellow-flower-tall"
+        },
+        {
+          "localId": 79,
+          "column": 2,
+          "row": 11,
+          "meaning": "red-potted-flower-tall"
+        },
+        {
+          "localId": 80,
+          "column": 3,
+          "row": 11,
+          "meaning": "yellow-potted-flower-tall"
+        }
+      ]
+    }
+  ],
+  "assets": [
+    {
+      "path": "Animals/Chicken/Chicken.png",
+      "categories": ["animals"],
+      "selectedForWorld": false,
+      "manualReview": [
+        "Вид и сетка 2x2 по 32px визуально различимы; направления, порядок и частота анимаций не подтверждены. В карте используется только логическая точка Chicken, без кадров анимации."
+      ]
+    },
+    {
+      "path": "Animals/Cow/Cow.png",
+      "categories": ["animals"],
+      "selectedForWorld": false,
+      "manualReview": [
+        "Вид и сетка 2x2 по 32px визуально различимы; направления, порядок и частота анимаций не подтверждены. В карте используется только логическая точка Chicken, без кадров анимации."
+      ]
+    },
+    {
+      "path": "Animals/Pig/Pig.png",
+      "categories": ["animals"],
+      "selectedForWorld": false,
+      "manualReview": [
+        "Вид и сетка 2x2 по 32px визуально различимы; направления, порядок и частота анимаций не подтверждены. В карте используется только логическая точка Chicken, без кадров анимации."
+      ]
+    },
+    {
+      "path": "Animals/Sheep/Sheep.png",
+      "categories": ["animals"],
+      "selectedForWorld": false,
+      "manualReview": [
+        "Вид и сетка 2x2 по 32px визуально различимы; направления, порядок и частота анимаций не подтверждены. В карте используется только логическая точка Chicken, без кадров анимации."
+      ]
+    },
+    {
+      "path": "Enemies/Skeleton.png",
+      "categories": ["enemies"],
+      "selectedForWorld": false,
+      "manualReview": [
+        "Видна анимационная таблица. Действия по рядам, диапазоны кадров и размеры коллизий не подтверждены."
+      ]
+    },
+    {
+      "path": "Enemies/SlimeGreen.png",
+      "categories": ["enemies"],
+      "selectedForWorld": false,
+      "manualReview": [
+        "Видна анимационная таблица. Точные границы кадров, неполные ряды и последовательности требуют отдельного анализа."
+      ]
+    },
+    {
+      "path": "Outdoor decoration/BridgeWood.png",
+      "categories": ["roads-paths"],
+      "selectedForWorld": false,
+      "manualReview": [
+        "Видны несколько сборок деревянного моста. Требуется разметить опоры, настил, подходы и коллизии; весь лист не является одним объектом."
+      ]
+    },
+    {
+      "path": "Outdoor decoration/Chest.png",
+      "categories": ["interactive-object-candidate"],
+      "selectedForWorld": true,
+      "manualReview": []
+    },
+    {
+      "path": "Outdoor decoration/Fences.png",
+      "categories": ["walls-obstacles"],
+      "selectedForWorld": true,
+      "manualReview": [
+        "Соединительные варианты не используются, правила стыковки ещё не заданы."
+      ]
+    },
+    {
+      "path": "Outdoor decoration/HouseWoodBaseBlue.png",
+      "categories": ["buildings"],
+      "selectedForWorld": true,
+      "manualReview": []
+    },
+    {
+      "path": "Outdoor decoration/OakTreeSmall.png",
+      "categories": ["trees-vegetation"],
+      "selectedForWorld": false,
+      "manualReview": [
+        "Видны пень, дерево и крона. Уточнить границы вариантов и их назначение, не трактовать весь лист как одно дерево."
+      ]
+    },
+    {
+      "path": "Outdoor decoration/OakTree.png",
+      "categories": ["trees-vegetation"],
+      "selectedForWorld": true,
+      "manualReview": []
+    },
+    {
+      "path": "Outdoor decoration/OutdoorDecor.png",
+      "categories": ["decorations"],
+      "selectedForWorld": true,
+      "manualReview": [
+        "Часть изображений выглядит как предметы/руда с обводкой. Нельзя достоверно назначить материал, ценность или роль world/UI."
+      ]
+    },
+    {
+      "path": "Player/PlayerActions.png",
+      "categories": ["player"],
+      "selectedForWorld": false,
+      "manualReview": [
+        "Таблица действий; визуальные эффекты могут выходить за рамку. Нельзя переносить сетку Player.png автоматически."
+      ]
+    },
+    {
+      "path": "Player/Player.png",
+      "categories": ["player"],
+      "selectedForWorld": false,
+      "manualReview": [
+        "32x32 и idle/walk подтверждены текущим кодом. Остальные четыре ряда не используются и требуют разметки."
+      ]
+    },
+    {
+      "path": "Tiles/BeachTile.png",
+      "categories": ["ground-landscape"],
+      "selectedForWorld": false,
+      "manualReview": [
+        "Видны песок, вода и берег. Схема 5x3 отличается от Path/Water; нужны отдельные правила соединения."
+      ]
+    },
+    {
+      "path": "Tiles/CliffTile.png",
+      "categories": ["walls-obstacles"],
+      "selectedForWorld": false,
+      "manualReview": [
+        "Видны перепады высоты. Направление высоты, проходимость и стыковка уровней не определены."
+      ]
+    },
+    {
+      "path": "Tiles/FarmLandTile.png",
+      "categories": ["ground-landscape"],
+      "selectedForWorld": true,
+      "manualReview": []
+    },
+    {
+      "path": "Tiles/GrassMiddle.png",
+      "categories": ["ground-landscape"],
+      "selectedForWorld": true,
+      "manualReview": []
+    },
+    {
+      "path": "Tiles/PathMiddle.png",
+      "categories": ["roads-paths"],
+      "selectedForWorld": false,
+      "manualReview": []
+    },
+    {
+      "path": "Tiles/PathTile.png",
+      "categories": ["roads-paths"],
+      "selectedForWorld": true,
+      "manualReview": []
+    },
+    {
+      "path": "Tiles/WaterMiddle.png",
+      "categories": ["water"],
+      "selectedForWorld": false,
+      "manualReview": []
+    },
+    {
+      "path": "Tiles/WaterTile.png",
+      "categories": ["water"],
+      "selectedForWorld": true,
+      "manualReview": []
+    }
+  ],
+  "assemblies": [
+    {
+      "id": "farmhouse",
+      "tileset": "house",
+      "sourceRectangle": [0, 0, 6, 8],
+      "splitRow": 5,
+      "lowerLayer": "Buildings",
+      "upperLayer": "Foreground",
+      "collision": "authored base rectangle, not the roof"
+    },
+    {
+      "id": "oak-tree",
+      "tileset": "oak",
+      "sourceRectangle": [0, 0, 4, 5],
+      "splitRow": 3,
+      "lowerLayer": "Decorations",
+      "upperLayer": "Foreground",
+      "collision": "authored trunk rectangle"
+    },
+    {
+      "id": "lamp",
+      "tileset": "decor",
+      "localIds": [[32], [39], [46]],
+      "collision": "base cell only"
+    },
+    {
+      "id": "fallen-log",
+      "tileset": "decor",
+      "localIds": [[49, 50]],
+      "collision": "both cells"
+    }
+  ],
+  "objects": {
+    "collisionUnits": "pixels, axis-aligned rectangles",
+    "approachUnits": "pixels, center of a walkable cell",
+    "npcMeaning": "Logic markers only, no sprites or animation automatically instantiated.",
+    "interactables": [
+      {
+        "name": "pond-fishing",
+        "type": "fishing-spot",
+        "properties": [
+          { "name": "approachX", "type": "int", "value": 584 },
+          { "name": "approachY", "type": "int", "value": 312 },
+          { "name": "action", "type": "string", "value": "fish" },
+          { "name": "visualId", "type": "string", "value": "pond" },
+          { "name": "interactionRadius", "type": "int", "value": 24 }
+        ]
+      },
+      {
+        "name": "farmhouse-door",
+        "type": "door",
+        "properties": [
+          { "name": "approachX", "type": "int", "value": 168 },
+          { "name": "approachY", "type": "int", "value": 248 },
+          { "name": "action", "type": "string", "value": "enter-house" },
+          { "name": "visualId", "type": "string", "value": "farmhouse" },
+          { "name": "interactionRadius", "type": "int", "value": 24 }
+        ]
+      },
+      {
+        "name": "supply-chest",
+        "type": "chest",
+        "properties": [
+          { "name": "approachX", "type": "int", "value": 248 },
+          { "name": "approachY", "type": "int", "value": 280 },
+          { "name": "action", "type": "string", "value": "open-chest" },
+          { "name": "visualId", "type": "string", "value": "supply-chest" },
+          { "name": "interactionRadius", "type": "int", "value": 24 }
+        ]
+      },
+      {
+        "name": "carrot-bed",
+        "type": "crop-bed",
+        "properties": [
+          { "name": "approachX", "type": "int", "value": 200 },
+          { "name": "approachY", "type": "int", "value": 600 },
+          { "name": "action", "type": "string", "value": "harvest-carrots" },
+          { "name": "visualId", "type": "string", "value": "carrot-bed" },
+          { "name": "interactionRadius", "type": "int", "value": 24 }
+        ]
+      },
+      {
+        "name": "grain-bed",
+        "type": "crop-bed",
+        "properties": [
+          { "name": "approachX", "type": "int", "value": 216 },
+          { "name": "approachY", "type": "int", "value": 600 },
+          { "name": "action", "type": "string", "value": "harvest-grain" },
+          { "name": "visualId", "type": "string", "value": "grain-bed" },
+          { "name": "interactionRadius", "type": "int", "value": 24 }
+        ]
+      }
+    ]
+  }
+}

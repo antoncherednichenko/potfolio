@@ -1,0 +1,160 @@
+{
+  "schemaVersion": 1,
+  "map": "world.json",
+  "mapSha256": "c10cd806d3b585aff84be5e7fce14d6e44bbbb46b1ddb4aafd9f0d6302315741",
+  "compatibilityStatus": "passed",
+  "checks": [
+    {
+      "name": "Tiled 1.12.2 native renderer",
+      "status": "passed",
+      "executable": "tmxrasterizer.exe",
+      "arguments": [
+        "--hide-layer",
+        "CollisionObjects",
+        "--hide-layer",
+        "NPCs",
+        "--hide-layer",
+        "Interactables",
+        "--hide-layer",
+        "Triggers",
+        "--hide-layer",
+        "PlayerSpawns",
+        "<isolated-temp>\\world.json",
+        "<isolated-temp>\\WorldTiled.png"
+      ],
+      "exitCode": 0,
+      "stderr": "",
+      "width": 800,
+      "height": 800
+    },
+    {
+      "name": "Tiled JSON to TMX to JSON roundtrip",
+      "status": "passed",
+      "commands": [
+        {
+          "executable": "tiled.exe",
+          "arguments": [
+            "--export-map",
+            "tmx",
+            "<isolated-temp>\\world.json",
+            "<isolated-temp>\\world.tmx"
+          ],
+          "exitCode": 0,
+          "stderr": ""
+        },
+        {
+          "executable": "tiled.exe",
+          "arguments": [
+            "--export-map",
+            "json",
+            "<isolated-temp>\\world.tmx",
+            "<isolated-temp>\\world-roundtrip.json"
+          ],
+          "exitCode": 0,
+          "stderr": ""
+        }
+      ],
+      "tileLayerArraysUnchanged": true,
+      "objectMetadataUnchanged": true,
+      "objectCoordinateTolerancePixels": 0.001,
+      "maxObjectCoordinateDifference": 0.0003333333329464949,
+      "note": "TMX export rounds fractional coordinates; original world.json was preserved.",
+      "tilesetDimensionsAndGidsUnchanged": true
+    },
+    {
+      "name": "CPU reference compared with Tiled native render",
+      "status": "measured",
+      "totalPixels": 640000,
+      "differentPixels": 9416,
+      "maxChannelDifference": 1
+    },
+    {
+      "name": "Installed Phaser parser",
+      "status": "passed",
+      "version": "4.2.1",
+      "method": "ParseJSONTiled in Node with an importScripts stub for worker-safe device detection; no rendering or runtime interaction test",
+      "tileLayers": [
+        "Ground",
+        "GroundDetails",
+        "Roads",
+        "Decorations",
+        "Buildings",
+        "Foreground"
+      ],
+      "tilesets": [
+        {
+          "name": "grass",
+          "total": 1
+        },
+        {
+          "name": "path",
+          "total": 18
+        },
+        {
+          "name": "water",
+          "total": 18
+        },
+        {
+          "name": "farm",
+          "total": 9
+        },
+        {
+          "name": "house",
+          "total": 48
+        },
+        {
+          "name": "oak",
+          "total": 20
+        },
+        {
+          "name": "fence",
+          "total": 16
+        },
+        {
+          "name": "chest",
+          "total": 1
+        },
+        {
+          "name": "decor",
+          "total": 84
+        }
+      ],
+      "objectLayers": [
+        {
+          "name": "CollisionObjects",
+          "objects": 39
+        },
+        {
+          "name": "NPCs",
+          "objects": 1
+        },
+        {
+          "name": "Interactables",
+          "objects": 5
+        },
+        {
+          "name": "Triggers",
+          "objects": 2
+        },
+        {
+          "name": "PlayerSpawns",
+          "objects": 1
+        }
+      ],
+      "warnings": []
+    }
+  ],
+  "visualInspection": {
+    "image": "previews/WorldTiled.png",
+    "inspected": true,
+    "method": "Native Tiled raster inspected as an image; no Tiled GUI editing session and no Phaser browser runtime test",
+    "observations": "Intact house, trees, pond shoreline, farm plot, fences and continuous roads; no visibly fragmented sprites."
+  },
+  "originalFileException": {
+    "path": "tileMap.tiled-session",
+    "expectedSha256": "5d80fb989edee9d60ac0e8b4679dada006c92a5831b60535b1208666739030a9",
+    "actualSha256": "a3adead0fa7e616d6ed9616991b73f82d50d0f7127caf3bc6ae8b58753060acd",
+    "note": "An initial Tiled CLI/help invocation apparently updated editor session metadata. No original-byte backup was available; file was not guessed or restored. Subsequent native checks used isolated copies and absolute paths."
+  },
+  "runtimeScope": "Static asset/data compatibility only. Current application still loads tile-map.json; new collision, interaction, NPC and trigger objects require runtime integration."
+}

@@ -1,0 +1,91 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+/*
+ * The game palette is intentionally scoped to .game-shell. Nothing outside
+ * the game can inherit these values or the pixel type treatment.
+ */
+.game-shell {
+  --game-font-pixel: 'Press Start 2P', 'Courier New', monospace;
+  --game-color-night: #11182e;
+  --game-color-ink: #191a2d;
+  --game-color-ink-soft: #303653;
+  --game-color-paper: #fffdf7;
+  --game-color-paper-muted: #f0eee8;
+  --game-color-sky: #c5dbf7;
+  --game-color-primary: #ed6a58;
+  --game-color-primary-hover: #f47b65;
+  --game-color-primary-pressed: #d95649;
+  --game-color-secondary: #2e79bb;
+  --game-color-secondary-hover: #3b8dce;
+  --game-color-secondary-pressed: #2869a4;
+  --game-color-sky-pressed: #aec9e8;
+  --game-color-focus: #ffe66d;
+  --game-color-overlay: rgb(17 24 46 / 78%);
+  --game-border-width: 3px;
+  --game-shadow-offset: 5px;
+  --game-radius: 0px;
+  --game-space-1: 4px;
+  --game-space-2: 8px;
+  --game-space-3: 12px;
+  --game-space-4: 16px;
+  --game-space-5: 24px;
+  --game-space-6: 32px;
+  --game-text-xs: 9px;
+  --game-text-sm: 11px;
+  --game-text-md: 14px;
+  --game-text-lg: 18px;
+  --game-text-xl: 28px;
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100dvh;
+  overflow: hidden;
+  background: var(--game-color-night);
+  color: var(--game-color-ink);
+  font-family: var(--game-font-pixel);
+  font-synthesis: none;
+  text-rendering: geometricPrecision;
+}
+
+.game-shell,
+.game-shell *,
+.game-shell *::before,
+.game-shell *::after {
+  box-sizing: border-box;
+}
+
+.game-shell .game-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.game-shell .game-canvas canvas {
+  display: block;
+  image-rendering: pixelated;
+}
+
+.game-shell button,
+.game-shell input,
+.game-shell textarea,
+.game-shell select {
+  font: inherit;
+}
+
+.game-shell :focus-visible {
+  outline: var(--game-border-width) solid var(--game-color-focus);
+  outline-offset: var(--game-space-1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .game-shell *,
+  .game-shell *::before,
+  .game-shell *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}

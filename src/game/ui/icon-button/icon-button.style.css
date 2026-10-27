@@ -1,0 +1,26 @@
+.game-shell .game-icon-button {
+  min-width: 0;
+  padding: var(--game-space-3);
+  width: 48px;
+  height: 48px;
+}
+
+.game-shell .game-icon-button.game-button--small {
+  width: 36px;
+  height: 36px;
+  padding: var(--game-space-2);
+}
+
+.game-shell .game-icon-button.game-button--large {
+  width: 60px;
+  height: 60px;
+  padding: var(--game-space-4);
+}
+
+.game-shell .game-icon-button__icon {
+  align-items: center;
+  display: inline-flex;
+  font-size: var(--game-text-lg);
+  justify-content: center;
+  line-height: 1;
+}

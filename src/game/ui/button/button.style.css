@@ -1,0 +1,81 @@
+.game-shell .game-button {
+  --button-background: var(--game-color-primary);
+  --button-background-hover: var(--game-color-primary-hover);
+  --button-background-pressed: var(--game-color-primary-pressed);
+  --button-foreground: var(--game-color-paper);
+  --button-border: var(--game-color-ink);
+  align-items: center;
+  border: var(--game-border-width) solid var(--button-border);
+  border-radius: var(--game-radius);
+  box-shadow: var(--game-shadow-offset) var(--game-shadow-offset) 0
+    var(--button-border);
+  background: var(--button-background);
+  color: var(--button-foreground);
+  cursor: pointer;
+  display: inline-flex;
+  justify-content: center;
+  min-width: 132px;
+  padding: var(--game-space-3) var(--game-space-4);
+  text-align: center;
+  text-transform: uppercase;
+  transition:
+    background-color 120ms steps(2, end),
+    transform 120ms steps(2, end),
+    box-shadow 120ms steps(2, end);
+}
+
+.game-shell .game-button:hover:not(:disabled) {
+  background: var(--button-background-hover);
+  transform: translate(-1px, -1px);
+  box-shadow: calc(var(--game-shadow-offset) + 1px)
+    calc(var(--game-shadow-offset) + 1px) 0 var(--button-border);
+}
+
+.game-shell .game-button:active:not(:disabled) {
+  background: var(--button-background-pressed);
+  transform: translate(var(--game-shadow-offset), var(--game-shadow-offset));
+  box-shadow: 0 0 0 var(--button-border);
+}
+
+.game-shell .game-button:disabled {
+  cursor: not-allowed;
+  filter: grayscale(0.8);
+  opacity: 0.55;
+}
+
+.game-shell .game-button--secondary {
+  --button-background: var(--game-color-secondary);
+  --button-background-hover: var(--game-color-secondary-hover);
+  --button-background-pressed: var(--game-color-secondary-pressed);
+}
+
+.game-shell .game-button--ghost {
+  --button-background: transparent;
+  --button-background-hover: var(--game-color-sky);
+  --button-background-pressed: var(--game-color-sky-pressed);
+  --button-foreground: var(--game-color-ink);
+}
+
+.game-shell .game-button--small {
+  font-size: var(--game-text-xs);
+  min-width: 104px;
+  padding: var(--game-space-2) var(--game-space-3);
+}
+
+.game-shell .game-button--medium {
+  font-size: var(--game-text-sm);
+}
+
+.game-shell .game-button--large {
+  font-size: var(--game-text-md);
+  min-width: 176px;
+  padding: var(--game-space-4) var(--game-space-5);
+}
+
+.game-shell .game-button--full-width {
+  width: 100%;
+}
+
+.game-shell .game-button__label {
+  line-height: 1.5;
+}

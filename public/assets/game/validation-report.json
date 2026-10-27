@@ -1,0 +1,131 @@
+{
+  "schemaVersion": 1,
+  "status": "passed",
+  "checks": [
+    {
+      "name": "Tiled JSON structure, IDs, GIDs, layers and supported geometry",
+      "status": "passed",
+      "detail": {
+        "map": "world.json",
+        "width": 50,
+        "height": 50,
+        "layers": 11
+      }
+    },
+    {
+      "name": "Original tile-map.json unchanged",
+      "status": "passed",
+      "detail": {
+        "sha256": "b433a745a1290a757860a0ccc4560c67a6d49c18088526ca4b32d5334943f68b"
+      }
+    },
+    {
+      "name": "Immutable original asset hashes match inventory",
+      "status": "passed",
+      "detail": {
+        "files": 25,
+        "excludedVolatileFiles": 1
+      }
+    },
+    {
+      "name": "Volatile Tiled editor session metadata",
+      "status": "warning",
+      "detail": {
+        "files": [
+          {
+            "path": "tileMap.tiled-session",
+            "originalSha256": "5d80fb989edee9d60ac0e8b4679dada006c92a5831b60535b1208666739030a9",
+            "currentSha256": "a3adead0fa7e616d6ed9616991b73f82d50d0f7127caf3bc6ae8b58753060acd",
+            "status": "changed"
+          }
+        ],
+        "note": "Editor session state is volatile and is not an immutable graphical asset. Original inventory hashes are preserved; this check never restores user editor state."
+      }
+    },
+    {
+      "name": "Image metadata, referenced paths and nonempty tile pixels",
+      "status": "passed",
+      "detail": {
+        "tilesets": 9,
+        "distinctUsedGids": 116
+      }
+    },
+    {
+      "name": "Routes, obstacles and gameplay target reachability",
+      "status": "passed",
+      "detail": {
+        "method": "Four-neighbour flood fill; every 16px cell intersecting a collision rectangle is blocked",
+        "body": {
+          "width": 12,
+          "height": 12,
+          "guarantee": "Clear cardinal center-to-center routes; arbitrary movement or a different runtime collision body must be checked separately"
+        },
+        "collisionRectangles": 39,
+        "blockedCells": 403,
+        "reachableCells": 2097,
+        "unreachableFreeCells": 0,
+        "roadCells": 557,
+        "allRoadCellsReachable": true,
+        "targets": [
+          {
+            "name": "spawn:village-arrival",
+            "tileX": 11,
+            "tileY": 17
+          },
+          {
+            "name": "npc:chicken-marker",
+            "tileX": 17,
+            "tileY": 38
+          },
+          {
+            "name": "interactable:pond-fishing",
+            "tileX": 36,
+            "tileY": 19
+          },
+          {
+            "name": "interactable:farmhouse-door",
+            "tileX": 10,
+            "tileY": 15
+          },
+          {
+            "name": "interactable:supply-chest",
+            "tileX": 15,
+            "tileY": 17
+          },
+          {
+            "name": "interactable:carrot-bed",
+            "tileX": 12,
+            "tileY": 37
+          },
+          {
+            "name": "interactable:grain-bed",
+            "tileX": 13,
+            "tileY": 37
+          },
+          {
+            "name": "trigger:village-welcome",
+            "tileX": 25,
+            "tileY": 30
+          },
+          {
+            "name": "trigger:orchard-arrival",
+            "tileX": 30,
+            "tileY": 36
+          }
+        ]
+      }
+    }
+  ],
+  "errors": [],
+  "warnings": [
+    {
+      "name": "Volatile Tiled editor session metadata",
+      "message": "Tiled session metadata changed since inventory, during editor verification or concurrent editor activity. The exact writer cannot be established from hashes alone; images, map and project are checked separately."
+    }
+  ],
+  "visualReview": {
+    "status": "requires-separate-review",
+    "note": "Validation is structural. render-world.mjs produces a CPU reference render; this report does not claim the map was opened in Tiled or Phaser."
+  },
+  "runtimeScope": "Map data only. The existing application is unchanged; object collisions, interactions and NPC behaviour need explicit runtime integration."
+}

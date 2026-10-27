@@ -1,0 +1,82 @@
+.game-shell .game-modal {
+  align-items: center;
+  background: var(--game-color-overlay);
+  display: flex;
+  inset: 0;
+  justify-content: center;
+  overflow: auto;
+  padding: var(--game-space-6);
+  position: absolute;
+  z-index: 10;
+}
+
+.game-shell .game-modal__dialog {
+  background: var(--game-color-paper);
+  border: var(--game-border-width) solid var(--game-color-ink);
+  box-shadow: 8px 8px 0 var(--game-color-ink);
+  color: var(--game-color-ink);
+  max-height: calc(100dvh - (var(--game-space-6) * 2));
+  max-width: 720px;
+  overflow: auto;
+  width: min(100%, 720px);
+}
+
+.game-shell .game-modal__header {
+  align-items: center;
+  background: var(--game-color-sky);
+  border-bottom: var(--game-border-width) solid var(--game-color-ink);
+  display: flex;
+  gap: var(--game-space-4);
+  justify-content: space-between;
+  padding: var(--game-space-4) var(--game-space-5);
+}
+
+.game-shell .game-modal__title {
+  font-size: var(--game-text-lg);
+  line-height: 1.5;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.game-shell .game-modal__content {
+  font-family: var(--game-font-pixel);
+  font-size: var(--game-text-sm);
+  line-height: 1.8;
+  padding: var(--game-space-5);
+}
+
+.game-shell .game-modal__actions {
+  align-items: center;
+  border-top: var(--game-border-width) solid var(--game-color-ink-soft);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--game-space-3);
+  justify-content: flex-end;
+  padding: var(--game-space-4) var(--game-space-5);
+}
+
+.game-shell .game-modal__close-icon {
+  font-family: var(--game-font-pixel);
+  font-size: var(--game-text-lg);
+  line-height: 0.8;
+}
+
+@media (max-width: 560px) {
+  .game-shell .game-modal {
+    padding: var(--game-space-4);
+  }
+
+  .game-shell .game-modal__dialog {
+    max-height: calc(100dvh - (var(--game-space-4) * 2));
+  }
+
+  .game-shell .game-modal__header,
+  .game-shell .game-modal__content,
+  .game-shell .game-modal__actions {
+    padding: var(--game-space-3);
+  }
+
+  .game-shell .game-modal__title {
+    font-size: var(--game-text-md);
+  }
+}
