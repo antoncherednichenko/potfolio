@@ -13,9 +13,9 @@ const FRAME_SIZE = 80;
 const FRAME_COUNT = 30;
 const FRAME_RATE = 12;
 
-// Keep the UFO close to the size used by the previous implementation while
-// retaining the new sheet's proportions.
-const DISPLAY_SIZE = 96;
+// Render the UFO and its beam at a smaller size while retaining the sheet's
+// proportions.
+const DISPLAY_SIZE = 72;
 const DISPLAY_SCALE = DISPLAY_SIZE / FRAME_SIZE;
 const BEAM_REACH = 52;
 

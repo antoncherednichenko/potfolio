@@ -8,7 +8,7 @@ import './globals.css';
 
 export const metadata: Metadata = {
   title: 'Cherednichenko Anton',
-  description: '',
+  description: 'Frontend developer',
   icons: {
     icon: '/favicon.png',
   },
