@@ -1,6 +1,6 @@
 .game-shell .game-modal {
   align-items: center;
-  background: var(--game-color-overlay);
+  background: rgb(17 24 46 / 70%);
   display: flex;
   inset: 0;
   justify-content: center;
@@ -11,20 +11,25 @@
 }
 
 .game-shell .game-modal__dialog {
-  background: var(--game-color-paper);
-  border: var(--game-border-width) solid var(--game-color-ink);
-  box-shadow: 8px 8px 0 var(--game-color-ink);
-  color: var(--game-color-ink);
+  background: #ffffff;
+  border: var(--game-border-width) solid #000000;
+  box-shadow: 8px 8px 0 #000000;
+  color: #000000;
   max-height: calc(100dvh - (var(--game-space-6) * 2));
   max-width: 720px;
   overflow: auto;
   width: min(100%, 720px);
 }
 
+.game-shell .game-modal__dialog:focus,
+.game-shell .game-modal__dialog:focus-visible {
+  outline: none;
+}
+
 .game-shell .game-modal__header {
   align-items: center;
-  background: var(--game-color-sky);
-  border-bottom: var(--game-border-width) solid var(--game-color-ink);
+  background: #ffffff;
+  border-bottom: var(--game-border-width) solid #000000;
   display: flex;
   gap: var(--game-space-4);
   justify-content: space-between;

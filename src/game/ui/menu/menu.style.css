@@ -1,0 +1,94 @@
+.game-shell .portfolio-menu {
+  align-items: center;
+  background: var(--game-color-background);
+  color: var(--game-color-ink);
+  display: flex;
+  flex-direction: column;
+  inset: 0;
+  padding: var(--game-space-5);
+  position: absolute;
+  text-align: center;
+  z-index: 20;
+}
+
+.game-shell .portfolio-menu__title {
+  font-size: clamp(var(--game-text-sm), 2.4vw, var(--game-text-xl));
+  line-height: 1.6;
+  margin: 0;
+  max-width: 900px;
+}
+
+.game-shell .portfolio-menu__content {
+  align-items: center;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: var(--game-space-4);
+  justify-content: center;
+  max-width: 640px;
+  min-height: 0;
+  width: 100%;
+}
+
+.game-shell .portfolio-menu__dog {
+  /* Dog.png is 1448x1086; these bounds crop its four upper idle poses. */
+  animation: portfolio-menu-dog-idle 1.2s steps(1, end) infinite;
+  background-image: url('/assets/game/Animals/Dog.png');
+  background-repeat: no-repeat;
+  height: 161px;
+  image-rendering: pixelated;
+  width: 174px;
+}
+
+.game-shell .portfolio-menu__resume {
+  font-size: clamp(5px, 1vw, var(--game-text-sm));
+  line-height: 1.5;
+  margin: 0;
+  white-space: nowrap;
+}
+
+.game-shell .portfolio-menu__resume a {
+  color: var(--game-color-secondary);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+}
+
+.game-shell .portfolio-menu__resume a:hover {
+  color: var(--game-color-secondary-hover);
+}
+
+@keyframes portfolio-menu-dog-idle {
+  0%,
+  24.99% {
+    background-position: -301px -376px;
+  }
+
+  25%,
+  49.99% {
+    background-position: -529px -376px;
+  }
+
+  50%,
+  74.99% {
+    background-position: -756px -377px;
+  }
+
+  75%,
+  100% {
+    background-position: -985px -377px;
+  }
+}
+
+@media (max-width: 560px) {
+  .game-shell .portfolio-menu {
+    padding: var(--game-space-4);
+  }
+
+  .game-shell .portfolio-menu__content {
+    gap: var(--game-space-3);
+  }
+
+  .game-shell .portfolio-menu__resume {
+    font-size: 5px;
+  }
+}

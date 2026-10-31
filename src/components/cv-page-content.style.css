@@ -1,0 +1,382 @@
+.cv-page {
+  --cv-background: #f7f7f5;
+  --cv-surface: #ffffff;
+  --cv-text: #171717;
+  --cv-muted: #686868;
+  --cv-line: #deded9;
+  --cv-accent: #171717;
+  min-height: 100dvh;
+  background: var(--cv-background);
+  color: var(--cv-text);
+  font-family: Arial, Helvetica, sans-serif;
+  line-height: 1.7;
+}
+
+.cv-page,
+.cv-page *,
+.cv-page *::before,
+.cv-page *::after {
+  box-sizing: border-box;
+}
+
+.cv-page :where(a) {
+  color: inherit;
+}
+
+.cv-page a:focus-visible {
+  outline: 2px solid var(--cv-text);
+  outline-offset: 4px;
+}
+
+.cv-page__shell {
+  margin: 0 auto;
+  max-width: 1180px;
+  padding: 48px clamp(20px, 5vw, 72px) 72px;
+}
+
+.cv-page__header {
+  align-items: flex-start;
+  border-bottom: 1px solid var(--cv-line);
+  display: flex;
+  gap: 32px;
+  justify-content: space-between;
+  padding-bottom: 32px;
+}
+
+.cv-page__eyebrow {
+  color: var(--cv-muted);
+  font-size: 13px;
+  letter-spacing: 0.14em;
+  margin: 0 0 16px;
+  text-transform: uppercase;
+}
+
+.cv-page h1,
+.cv-page h2,
+.cv-page h3,
+.cv-page p {
+  margin-top: 0;
+}
+
+.cv-page h1 {
+  font-size: clamp(34px, 6vw, 66px);
+  font-weight: 500;
+  letter-spacing: -0.055em;
+  line-height: 1;
+  margin-bottom: 14px;
+}
+
+.cv-page__role {
+  color: var(--cv-muted);
+  font-size: clamp(18px, 2vw, 24px);
+  margin-bottom: 0;
+}
+
+.cv-page__actions {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: flex-end;
+}
+
+.cv-page__play,
+.cv-page__download {
+  align-items: center;
+  display: inline-flex;
+  justify-content: center;
+  text-decoration: none;
+}
+
+.cv-page__play {
+  background: #ed6a58;
+  border: 3px solid #191a2d;
+  box-shadow: 5px 5px 0 #191a2d;
+  color: #fffdf7;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  min-height: 40px;
+  min-width: 88px;
+  padding: 8px 14px;
+  transition:
+    background-color 120ms steps(2, end),
+    transform 120ms steps(2, end),
+    box-shadow 120ms steps(2, end);
+}
+
+.cv-page__play:hover {
+  background: #f47b65;
+  color: #fffdf7;
+  transform: translate(-1px, -1px);
+  box-shadow: 6px 6px 0 #191a2d;
+}
+
+.cv-page__play:active {
+  background: #d95649;
+  transform: translate(5px, 5px);
+  box-shadow: 0 0 0 #191a2d;
+}
+
+.cv-page__download {
+  background: transparent;
+  border: 1px solid var(--cv-text);
+  color: var(--cv-text);
+  height: 40px;
+  padding: 0;
+  width: 40px;
+  text-decoration: none;
+  transition:
+    background-color 160ms ease,
+    color 160ms ease;
+}
+
+.cv-page__download:hover {
+  background: var(--cv-text);
+  color: var(--cv-surface);
+}
+
+.cv-page__download-icon {
+  fill: none;
+  height: 19px;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.8;
+  width: 19px;
+}
+
+.cv-page__summary {
+  border-bottom: 1px solid var(--cv-line);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 32px;
+  justify-content: space-between;
+  padding: 18px 0;
+}
+
+.cv-page__summary p {
+  color: var(--cv-muted);
+  font-size: 16px;
+  margin-bottom: 0;
+}
+
+.cv-page__layout {
+  display: grid;
+  gap: clamp(40px, 7vw, 96px);
+  grid-template-columns: minmax(180px, 0.35fr) minmax(0, 1fr);
+  padding-top: 48px;
+}
+
+.cv-page__sidebar,
+.cv-page__main {
+  display: grid;
+  align-content: start;
+  gap: 48px;
+}
+
+.cv-page section {
+  border-top: 1px solid var(--cv-text);
+  padding-top: 14px;
+}
+
+.cv-page h2 {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.13em;
+  line-height: 1.3;
+  margin-bottom: 28px;
+  text-transform: uppercase;
+}
+
+.cv-page h3 {
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.35;
+  margin-bottom: 6px;
+}
+
+.cv-page__paragraphs {
+  display: grid;
+  gap: 18px;
+  max-width: 720px;
+}
+
+.cv-page__paragraphs p {
+  font-size: clamp(17px, 1.35vw, 19px);
+  margin-bottom: 0;
+}
+
+.cv-page__technology-list {
+  display: grid;
+  gap: 24px;
+}
+
+.cv-page__technology-list h3 {
+  color: var(--cv-muted);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+}
+
+.cv-page ul {
+  margin: 0;
+  padding-left: 18px;
+}
+
+.cv-page__technology-list ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.cv-page__technology-list li,
+.cv-page__job li {
+  font-size: 16px;
+  margin-bottom: 5px;
+}
+
+.cv-page__contacts {
+  display: grid;
+  gap: 16px;
+  list-style: none;
+  padding-left: 0;
+}
+
+.cv-page__contacts li {
+  display: grid;
+  gap: 3px;
+}
+
+.cv-page__contacts span,
+.cv-page__period {
+  color: var(--cv-muted);
+  font-size: 14px;
+}
+
+.cv-page__contacts a {
+  font-size: 16px;
+  overflow-wrap: anywhere;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+
+.cv-page__experience {
+  display: grid;
+  gap: 36px;
+}
+
+.cv-page__job {
+  border-bottom: 1px solid var(--cv-line);
+  padding-bottom: 36px;
+}
+
+.cv-page__job:last-child {
+  border-bottom: 0;
+  padding-bottom: 0;
+}
+
+.cv-page__job-heading {
+  align-items: flex-start;
+  display: flex;
+  gap: 18px;
+  justify-content: space-between;
+}
+
+.cv-page__job-heading h3 {
+  margin-bottom: 3px;
+}
+
+.cv-page__position,
+.cv-page__description {
+  font-size: 16px;
+  margin-bottom: 0;
+}
+
+.cv-page__position {
+  color: var(--cv-muted);
+}
+
+.cv-page__period {
+  flex: 0 0 auto;
+  margin-bottom: 0;
+  text-align: right;
+}
+
+.cv-page__description {
+  margin: 20px 0 12px;
+}
+
+.cv-page__job li {
+  line-height: 1.65;
+}
+
+@media (max-width: 720px) {
+  .cv-page__shell {
+    padding-top: 28px;
+  }
+
+  .cv-page__header {
+    display: grid;
+    gap: 24px;
+  }
+
+  .cv-page__actions {
+    justify-content: flex-start;
+  }
+
+  .cv-page__layout {
+    grid-template-columns: 1fr;
+    padding-top: 36px;
+  }
+
+  .cv-page__sidebar {
+    order: 2;
+  }
+
+  .cv-page__main {
+    order: 1;
+  }
+}
+
+@media (max-width: 480px) {
+  .cv-page__shell {
+    padding-bottom: 44px;
+  }
+
+  .cv-page__actions {
+    align-items: center;
+    justify-content: flex-start;
+  }
+
+  .cv-page__summary {
+    display: grid;
+    gap: 4px;
+  }
+
+  .cv-page__job-heading {
+    display: grid;
+    gap: 8px;
+  }
+
+  .cv-page__period {
+    text-align: left;
+  }
+}
+
+@media print {
+  .cv-page {
+    background: var(--cv-surface);
+  }
+
+  .cv-page__shell {
+    max-width: none;
+    padding: 0;
+  }
+
+  .cv-page__actions {
+    display: none;
+  }
+}

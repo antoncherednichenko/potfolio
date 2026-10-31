@@ -1,0 +1,47 @@
+.game-shell .portfolio-navigator {
+  left: 0;
+  padding: var(--game-space-3);
+  pointer-events: none;
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: 30;
+}
+
+.game-shell .portfolio-navigator__buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--game-space-2);
+  justify-content: flex-end;
+  margin: 0 auto;
+  max-width: 1100px;
+  pointer-events: auto;
+}
+
+.game-shell .portfolio-navigator .game-button {
+  min-width: 0;
+  white-space: nowrap;
+}
+
+.game-shell .portfolio-navigator .game-button--ghost,
+.game-shell .portfolio-navigator .game-button--secondary {
+  --button-background: #ffffff;
+  --button-background-hover: #ffffff;
+  --button-background-pressed: #ffffff;
+  --button-foreground: var(--game-color-ink);
+}
+
+@media (max-width: 560px) {
+  .game-shell .portfolio-navigator {
+    padding: var(--game-space-2);
+  }
+
+  .game-shell .portfolio-navigator__buttons {
+    gap: 6px;
+  }
+
+  .game-shell .portfolio-navigator .game-button {
+    font-size: 7px;
+    padding: 8px;
+  }
+}

@@ -13,6 +13,11 @@ export const SceneKeys = {
   main: 'Main',
 } as const;
 
+export const GameEventKeys = {
+  loadingComplete: 'portfolio-loading-complete',
+  interactableClick: 'portfolio-interactable-click',
+} as const;
+
 export const AssetPaths = {
   world: '/assets/game/world.json',
 } as const;
@@ -22,6 +27,7 @@ export const ObjectLayers = {
   events: 'Events',
   player: 'Player',
   npc: 'NPC',
+  interactables: 'Interectables',
   objects: 'Objects',
   collisions: 'Collisions',
   collisionObjects: 'CollisionObjects',
@@ -141,3 +147,10 @@ export const ANIMAL_CONFIGS = {
   cow: createAnimalConfig('cow', 3, AreaKeys.cow, SpawnKeys.cow),
   pig: createAnimalConfig('pig', 2, AreaKeys.pig, SpawnKeys.pig),
 } as const satisfies Record<AnimalKind, AnimalConfig>;
+export const DIALOGUE_CHANGE_DELAY = 3000;
+export const DIALOGUE_TEXT_WIDTH = 156;
+export const DIALOGUE_PADDING_X = 5;
+export const DIALOGUE_PADDING_Y = 3;
+export const DIALOGUE_TAIL_HEIGHT = 5;
+export const DIALOGUE_TAIL_WIDTH = 5;
+export const DIALOGUE_GAP = 2;

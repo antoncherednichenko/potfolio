@@ -1,0 +1,161 @@
+{
+  "schemaVersion": 1,
+  "profile": {
+    "name": "Антон Чередниченко",
+    "role": "Frontend-разработчик",
+    "experience": "5+ лет"
+  },
+  "sections": [
+    {
+      "id": "about",
+      "type": "about",
+      "title": "Обо мне",
+      "content": {
+        "paragraphs": [
+          "Меня зовут Антон Чередниченко. Я креативный frontend-разработчик с опытом работы более пяти лет.",
+          "Имею опыт создания приложений с нуля: от проектирования архитектуры и выбора технологического стека до настройки сборщика и инструментов контроля качества кода.",
+          "Основное направление моей деятельности — frontend-разработка (TypeScript, React, Next.js, Redux). Кроме того, у меня есть опыт разработки backend-приложений с использованием NestJS, PostgreSQL и Prisma.",
+          "Одна из моих сильных сторон — не только написание кода, но и умение выступать связующим звеном между бизнесом, дизайном, backend- и frontend-командами. Понимание визуального языка дизайна и принципов работы backend-систем позволяет мне добиваться отличных результатов.",
+          "Также у меня есть опыт менторства."
+        ]
+      }
+    },
+    {
+      "id": "cv",
+      "type": "cv",
+      "title": "Опыт работы",
+      "content": {
+        "items": [
+          {
+            "id": "sber-business",
+            "title": "СберБизнес",
+            "position": "Frontend Developer",
+            "description": "Команда налоговых вычетов",
+            "period": {
+              "start": "2026-11-02",
+              "end": null
+            },
+            "responsibilities": []
+          },
+          {
+            "id": "hr-pulse",
+            "title": "HR-платформа «Пульс»",
+            "position": "Frontend Developer",
+            "description": "Команда непрерывного развития сотрудников",
+            "period": {
+              "start": "2025-02-17",
+              "end": "2026-11-02"
+            },
+            "responsibilities": [
+              "Разработка микросервиса с нуля и внедрение архитектурного подхода Feature-Sliced Design (FSD).",
+              "Интеграция с REST API и настройка кэширования с помощью RTK Query.",
+              "Создание сложных динамических форм с валидацией через Zod и многошаговой логикой.",
+              "Написание unit-тестов с использованием Jest и React Testing Library. Покрытие тестами — более 80%.",
+              "Оценка сроков выполнения задач и их декомпозиция.",
+              "Проведение код-ревью."
+            ]
+          },
+          {
+            "id": "sber-unity",
+            "title": "SberUnity",
+            "position": "Frontend Developer",
+            "description": "Платформа для запуска пилотов и поиска инвестиций",
+            "period": {
+              "start": "2022-08-30",
+              "end": "2025-02-17"
+            },
+            "responsibilities": [
+              "Создание и поддержка UI Kit, документирование компонентов в Storybook.",
+              "Рефакторинг legacy-кода и оптимизация производительности.",
+              "Оценка сроков выполнения задач и их декомпозиция.",
+              "Внедрение i18n для поддержки двух языков на сайте.",
+              "Улучшение показателей Lighthouse, что позволило ускорить загрузку страниц для пользователей."
+            ]
+          },
+          {
+            "id": "lik",
+            "title": "ЗАО «ЛИК»",
+            "position": "Frontend Developer",
+            "description": "Поддержка и оптимизация существующих функций и компонентов: рефакторинг кода, повышение производительности и исправление ошибок.",
+            "period": {
+              "start": "2022-01-12",
+              "end": "2022-08-29"
+            },
+            "responsibilities": [
+              "Перенос legacy-кода на Vue.",
+              "Миграция с Vue 2 на Vue 3.",
+              "Переход с JavaScript на TypeScript.",
+              "Адаптивная и кросс-браузерная вёрстка.",
+              "Взаимодействие с backend-разработчиками и тестировщиком.",
+              "Оценка сроков выполнения задач."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "technologies",
+      "type": "technologies",
+      "title": "Технологии",
+      "content": {
+        "categories": [
+          {
+            "id": "frontend",
+            "title": "Frontend",
+            "items": ["TypeScript", "React", "Next.js"]
+          },
+          {
+            "id": "state-and-forms",
+            "title": "State Management & Forms",
+            "items": ["Redux Toolkit", "React Hook Form", "Zod"]
+          },
+          {
+            "id": "testing",
+            "title": "Testing",
+            "items": ["Jest", "React Testing Library"]
+          },
+          {
+            "id": "backend",
+            "title": "Backend",
+            "items": ["NestJS", "PostgreSQL", "Prisma"]
+          },
+          {
+            "id": "game-development",
+            "title": "Game Development",
+            "items": ["Phaser.js"]
+          }
+        ]
+      }
+    },
+    {
+      "id": "contacts",
+      "type": "contacts",
+      "title": "Контакты",
+      "content": {
+        "items": [
+          {
+            "id": "telegram",
+            "type": "telegram",
+            "label": "Telegram",
+            "value": "@cherTooooony",
+            "href": "https://t.me/cherTooooony"
+          },
+          {
+            "id": "phone",
+            "type": "phone",
+            "label": "Телефон",
+            "value": "8-901-903-12-69",
+            "href": "tel:+79019031269"
+          },
+          {
+            "id": "email",
+            "type": "email",
+            "label": "Email",
+            "value": "tony.cherednichenko95@yandex.ru",
+            "href": "mailto:tony.cherednichenko95@yandex.ru"
+          }
+        ]
+      }
+    }
+  ]
+}

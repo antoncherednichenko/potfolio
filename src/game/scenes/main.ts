@@ -7,6 +7,7 @@ import { Ufo } from '@/game/entities/ufo';
 import {
   ANIMAL_CONFIGS,
   AreaKeys,
+  GameEventKeys,
   EventKeys,
   MapKeys,
   ObjectLayers,
@@ -15,6 +16,13 @@ import {
   TILESETS,
   TilemapProperties,
   type AnimalConfig,
+  DIALOGUE_TEXT_WIDTH,
+  DIALOGUE_CHANGE_DELAY,
+  DIALOGUE_PADDING_X,
+  DIALOGUE_PADDING_Y,
+  DIALOGUE_TAIL_WIDTH,
+  DIALOGUE_GAP,
+  DIALOGUE_TAIL_HEIGHT,
 } from './constants';
 import {
   clampWanderersToBounds,
@@ -34,13 +42,6 @@ const DIALOGUE_LINES = [
   'Добро пожаловать в моё портфолио!',
   'Прогуляйтесь, чтобы узнать больше.',
 ] as const;
-const DIALOGUE_CHANGE_DELAY = 3000;
-const DIALOGUE_TEXT_WIDTH = 156;
-const DIALOGUE_PADDING_X = 5;
-const DIALOGUE_PADDING_Y = 3;
-const DIALOGUE_TAIL_HEIGHT = 5;
-const DIALOGUE_TAIL_WIDTH = 5;
-const DIALOGUE_GAP = 2;
 
 type DialogueBubble = {
   container: Phaser.GameObjects.Container;
@@ -106,6 +107,8 @@ export class Main extends Phaser.Scene {
       ObjectLayers.objects,
       this.cache.tilemap.get(MapKeys.world).data.tilesets,
     );
+
+    this.createInteractables(map);
 
     this.sheepArea = getAnimalArea(map, ObjectLayers.areas, AreaKeys.sheep);
     this.chickenArea = getAnimalArea(map, ObjectLayers.areas, AreaKeys.chicken);
@@ -441,6 +444,64 @@ export class Main extends Phaser.Scene {
       undefined,
       this,
     );
+  }
+
+  private createInteractables(map: Phaser.Tilemaps.Tilemap) {
+    const layer = [ObjectLayers.interactables, 'Interactables', 'Interactable']
+      .map((name) => map.getObjectLayer(name))
+      .find((candidate) => candidate !== undefined);
+
+    if (!layer) return;
+
+    for (const object of layer.objects) {
+      if (!layer.visible || !object.visible || !object.name) {
+        continue;
+      }
+
+      const x = object.x ?? 0;
+      const y = object.y ?? 0;
+      const points =
+        object.polygon?.map(({ x: pointX, y: pointY }) => ({
+          x: pointX,
+          y: pointY,
+        })) ??
+        (object.width && object.height
+          ? [
+              { x: 0, y: 0 },
+              { x: object.width, y: 0 },
+              { x: object.width, y: object.height },
+              { x: 0, y: object.height },
+            ]
+          : undefined);
+
+      if (!points || points.length < 3) continue;
+
+      const sectionId = object.name.trim().toLowerCase();
+      const outline = this.add
+        .graphics()
+        .setPosition(x, y)
+        .setDepth(1100)
+        .setInteractive({
+          hitArea: new Phaser.Geom.Polygon(points),
+          hitAreaCallback: Phaser.Geom.Polygon.Contains,
+          useHandCursor: true,
+        });
+
+      outline.lineStyle(1, 0xffffff, 1);
+      outline.beginPath();
+      points.forEach((point, index) => {
+        if (index === 0) {
+          outline.moveTo(point.x, point.y);
+        } else {
+          outline.lineTo(point.x, point.y);
+        }
+      });
+      outline.closePath().strokePath();
+
+      outline.on('pointerdown', () => {
+        this.game.events.emit(GameEventKeys.interactableClick, sectionId);
+      });
+    }
   }
 
   private startUfoEvent() {

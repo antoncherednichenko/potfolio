@@ -3,13 +3,19 @@ import Phaser from 'phaser';
 import { Animal } from '@/game/entities/animal';
 import { Player } from '@/game/entities/player';
 import { Ufo } from '@/game/entities/ufo';
-import { AssetPaths, MapKeys, SceneKeys, TILESETS } from './constants';
+import {
+  AssetPaths,
+  GameEventKeys,
+  MapKeys,
+  SceneKeys,
+  TILESETS,
+} from './constants';
 
 const DOG_SOURCE_TEXTURE = 'loading-dog-source';
 const DOG_TEXTURE = 'loading-dog-frame';
 const DOG_URL = '/assets/game/Animals/Dog.png';
 const DOG_ANIMATION = `${DOG_TEXTURE}-run`;
-const DOG_SCALE = 0.65;
+const DOG_SCALE = 1.25;
 const DOG_FRAME_CANVAS_WIDTH = 200;
 const DOG_FRAME_CANVAS_HEIGHT = 180;
 const DOG_ART_BASELINE = 160;
@@ -27,6 +33,7 @@ const DOG_FRAME_BOUNDS = [
   { x: 1088, y: 643, width: 158, height: 148 },
   { x: 1267, y: 650, width: 169, height: 141 },
 ] as const;
+
 const MINIMUM_LOADING_TIME = 400;
 
 export class Loading extends Phaser.Scene {
@@ -90,7 +97,7 @@ export class Loading extends Phaser.Scene {
     );
 
     this.time.delayedCall(waitForMinimumDuration, () => {
-      this.scene.start(SceneKeys.main);
+      this.game.events.emit(GameEventKeys.loadingComplete);
     });
   }
 
@@ -169,8 +176,7 @@ export class Loading extends Phaser.Scene {
     const barY = height / 2 - barHeight / 2;
 
     this.progressText?.setPosition(centerX, barY + barHeight + 28);
-    this.dog?.setPosition(centerX, barY - 62);
-
+    this.dog?.setPosition(centerX, barY - 100);
     if (this.progressTrack) {
       this.progressTrack.clear();
       this.progressTrack.fillStyle(0xffffff, 1);

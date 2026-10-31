@@ -1,0 +1,82 @@
+.game-shell .cv-section-content__paragraphs,
+.game-shell .cv-section-content__experience,
+.game-shell .cv-section-content__technologies,
+.game-shell .cv-section-content__contacts {
+  display: grid;
+  gap: var(--game-space-4);
+  margin: 0;
+}
+
+.game-shell .cv-section-content__paragraphs p,
+.game-shell .cv-section-content__job p {
+  margin: 0;
+}
+
+.game-shell .cv-section-content__job {
+  border-bottom: 2px solid var(--game-color-ink-soft);
+  display: grid;
+  gap: var(--game-space-2);
+  padding-bottom: var(--game-space-4);
+}
+
+.game-shell .cv-section-content__job:last-child {
+  border-bottom: 0;
+  padding-bottom: 0;
+}
+
+.game-shell .cv-section-content__job-heading {
+  align-items: baseline;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--game-space-2) var(--game-space-4);
+  justify-content: space-between;
+}
+
+.game-shell .cv-section-content__job h3,
+.game-shell .cv-section-content__technologies h3 {
+  font-size: var(--game-text-md);
+  line-height: 1.5;
+  margin: 0;
+}
+
+.game-shell .cv-section-content__job-heading span {
+  color: var(--game-color-ink-soft);
+  font-size: var(--game-text-xs);
+}
+
+.game-shell .cv-section-content__position {
+  color: var(--game-color-secondary);
+}
+
+.game-shell .cv-section-content__job ul,
+.game-shell .cv-section-content__technologies ul {
+  margin: 0;
+  padding-left: var(--game-space-5);
+}
+
+.game-shell .cv-section-content__job li,
+.game-shell .cv-section-content__technologies li {
+  margin-bottom: var(--game-space-2);
+}
+
+.game-shell .cv-section-content__contacts {
+  list-style: none;
+  padding: 0;
+}
+
+.game-shell .cv-section-content__contacts li {
+  align-items: baseline;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--game-space-3);
+  justify-content: space-between;
+}
+
+.game-shell .cv-section-content__contacts span {
+  color: var(--game-color-ink-soft);
+}
+
+.game-shell .cv-section-content__contacts a {
+  color: var(--game-color-secondary);
+  overflow-wrap: anywhere;
+}
